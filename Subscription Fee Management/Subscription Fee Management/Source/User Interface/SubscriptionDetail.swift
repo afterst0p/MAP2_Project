@@ -50,7 +50,7 @@ struct SubscriptionDetail: View {
                     Text(subscription.yearly ? "연간 구독" : "월간 구독")
                 }
                 HStack {
-                    Text("갱신일").foregroundStyle(.gray)
+                    Text("결제일").foregroundStyle(.gray)
                     Spacer()
                     Text(dateString)
                 }
