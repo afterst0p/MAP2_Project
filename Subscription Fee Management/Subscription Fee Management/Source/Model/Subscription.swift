@@ -14,8 +14,8 @@ struct Subscription {
     var yearly: Bool
     var price: Int
     var payDate: DateComponents
-    var categoryID: String
-    var paymentID: String
+    var categoryID: String?
+    var paymentID: String?
 }
 
 // 구독 정보들을 모으는 클래스

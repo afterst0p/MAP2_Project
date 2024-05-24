@@ -11,12 +11,12 @@ struct SubscriptionDetail: View {
     @ObservedObject var subscriptionList: SubscriptionList
     @Environment(\.presentationMode) var presentationMode
     let subscription: Subscription
-    let category: CustomCategory
-    let payment: Payment
+    let category: CustomCategory?
+    let payment: Payment?
     var price: String
     var dateString: String
     
-    init(subscriptionList: SubscriptionList, subscription: Subscription, category: CustomCategory!, payment: Payment!) {
+    init(subscriptionList: SubscriptionList, subscription: Subscription, category: CustomCategory?, payment: Payment?) {
         self.subscriptionList = subscriptionList
         self.subscription = subscription
         self.category = category
@@ -62,17 +62,17 @@ struct SubscriptionDetail: View {
                 HStack {
                     Text("카테고리").foregroundStyle(.gray)
                     Spacer()
-                    Text(category.name)
+                    Text(category?.name ?? "없음")
                 }
                 HStack {
                     Text("결제 수단").foregroundStyle(.gray)
                     Spacer()
-                    Text(payment.name)
+                    Text(payment?.name ?? "없음")
                 }
                 HStack {
                     Text("결제 유형").foregroundStyle(.gray)
                     Spacer()
-                    Text(payment.pay.rawValue)
+                    Text(payment?.pay.rawValue ?? "없음")
                 }
             }
             .navigationTitle(subscription.name)

@@ -26,8 +26,11 @@ class CustomCategoryList: ObservableObject {
         self.customCategories = Bundle.main.decode(filename: filename, as: [CustomCategory].self)
     }
     
-    func getCategoryByUUID(uuidString: String) -> CustomCategory? {
-        guard let uuid = UUID(uuidString: uuidString) else {
+    func getCategoryByUUID(uuidString: String?) -> CustomCategory? {
+        guard let uuidStringUnwrapped = uuidString else {
+                    return nil
+            }
+        guard let uuid = UUID(uuidString: uuidStringUnwrapped) else {
                     return nil
             }
         return customCategories.first { $0.id == uuid }

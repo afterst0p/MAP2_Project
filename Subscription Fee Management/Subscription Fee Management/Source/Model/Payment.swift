@@ -32,8 +32,11 @@ class PaymentList: ObservableObject {
         self.payments = Bundle.main.decode(filename: filename, as: [Payment].self)
     }
     
-    func getPaymentByUUID(uuidString: String) -> Payment? {
-        guard let uuid = UUID(uuidString: uuidString) else {
+    func getPaymentByUUID(uuidString: String?) -> Payment? {
+        guard let uuidStringUnwrapped = uuidString else {
+                    return nil
+            }
+        guard let uuid = UUID(uuidString: uuidStringUnwrapped) else {
                     return nil
             }
         return payments.first { $0.id == uuid }

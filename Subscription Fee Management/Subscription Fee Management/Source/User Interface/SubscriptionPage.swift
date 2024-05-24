@@ -54,12 +54,12 @@ struct SubscriptionPage: View {
 
 struct ListCell: View {
     var subscription: Subscription
-    var category: CustomCategory
-    var payment: Payment
+    var category: CustomCategory?
+    var payment: Payment?
     let price: String
     let dateString: String
     
-    init (subscription: Subscription, category: CustomCategory!, payment: Payment!) {
+    init (subscription: Subscription, category: CustomCategory?, payment: Payment?) {
         self.subscription = subscription
         self.category = category
         self.payment = payment
@@ -88,7 +88,7 @@ struct ListCell: View {
             HStack {
                 Text(subscription.name).font(.title2).bold()
                 Spacer()
-                Text(category.name).foregroundStyle(Color.gray)
+                Text(category?.name ?? "").foregroundStyle(Color.gray)
             }
             Spacer()
             HStack {
