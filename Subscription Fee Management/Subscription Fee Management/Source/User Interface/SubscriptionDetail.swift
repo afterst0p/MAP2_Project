@@ -75,14 +75,13 @@ struct SubscriptionDetail: View {
                     Text(payment?.pay.rawValue ?? "없음")
                 }
             }
-            .navigationTitle(subscription.name)
-            
             Button(action: deleteSubscription) {
                 Text("구독 삭제")
                     .foregroundStyle(.red)
                     .frame(maxWidth: .infinity)
             }
         }
+        .navigationTitle(subscription.name)
     }
     
     func deleteSubscription() {

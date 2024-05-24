@@ -30,6 +30,7 @@ struct SubscriptionAdd: View {
                     .frame(maxWidth: .infinity)
             }
         }
+        .navigationTitle("구독 추가")
     }
     
     func addSubscription() {
