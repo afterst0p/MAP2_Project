@@ -45,3 +45,4 @@ let categorySamples = [
 
 extension CustomCategory: Decodable {}
 extension CustomCategory: Identifiable {}
+extension CustomCategory: Hashable {}

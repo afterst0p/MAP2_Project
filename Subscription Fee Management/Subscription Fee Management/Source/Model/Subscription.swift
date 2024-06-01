@@ -16,6 +16,23 @@ struct Subscription {
     var payDate: DateComponents
     var categoryID: String?
     var paymentID: String?
+    
+    init(name: String, yearly: Bool, price: Int, payDate: DateComponents, categoryID: String? = nil, paymentID: String? = nil) {
+        self.name = name
+        self.yearly = yearly
+        self.price = price
+        self.payDate = payDate
+        if let categoryID = categoryID, !categoryID.isEmpty {
+            self.categoryID = categoryID
+        } else {
+            self.categoryID = nil
+        }
+        if let paymentID = paymentID, !paymentID.isEmpty {
+            self.paymentID = paymentID
+        } else {
+            self.paymentID = nil
+        }
+    }
 }
 
 // 구독 정보들을 모으는 클래스

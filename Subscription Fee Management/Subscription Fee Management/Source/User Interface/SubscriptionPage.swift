@@ -12,6 +12,7 @@ struct SubscriptionPage: View {
     @StateObject var categoryList: CustomCategoryList
     @StateObject var paymentList: PaymentList
     @State private var stackPath = NavigationPath()
+    @State private var isAddingSubscription = false
     
     var body: some View {
         NavigationStack(path: $stackPath) {
@@ -35,19 +36,17 @@ struct SubscriptionPage: View {
                                    category: categoryList.getCategoryByUUID(uuidString: subscriptionList.subscriptions[i].categoryID),
                                    payment: paymentList.getPaymentByUUID(uuidString: subscriptionList.subscriptions[i].paymentID))
             }
-            .navigationDestination(for: String.self) { _ in
+            .navigationBarTitle(Text("구독 목록"))
+            .navigationBarItems(trailing: Button(action: {
+                isAddingSubscription = true
+            }) {
+                Text("구독 추가")
+            })
+            .sheet(isPresented: $isAddingSubscription) {
                 SubscriptionAdd(subscriptionList: subscriptionList,
                                 categoryList: categoryList,
-                                paymentList: paymentList,
-                                path: $stackPath)
+                                paymentList: paymentList)
             }
-            .navigationBarTitle(Text("구독 목록"))
-            .navigationBarItems(trailing: NavigationLink(
-                value: "Add", 
-                label: {
-                    Text("구독 추가")
-                }
-            ))
         }
     }
 }
@@ -75,9 +74,9 @@ struct ListCell: View {
         
         switch subscription.yearly {
         case false:
-            dateFormatter.dateFormat = "매월 dd일"
+            dateFormatter.dateFormat = "매월 d일"
         case true:
-            dateFormatter.dateFormat = "매년 MM월 dd일"
+            dateFormatter.dateFormat = "매년 M월 d일"
         }
         
         dateString = dateFormatter.string(from: date!)
