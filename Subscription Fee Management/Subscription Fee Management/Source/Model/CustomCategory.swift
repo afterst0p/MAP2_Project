@@ -35,6 +35,10 @@ class CustomCategoryList: ObservableObject {
             }
         return customCategories.first { $0.id == uuid }
     }
+    
+    func isDuplicate(name: String) -> Bool {
+        customCategories.contains { $0.name == name }
+    }
 }
 
 let categorySamples = [

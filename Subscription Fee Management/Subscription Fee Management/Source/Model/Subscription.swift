@@ -46,6 +46,10 @@ class SubscriptionList: ObservableObject {
     func delete(subscription: Subscription) {
         subscriptions.removeAll { $0.id == subscription.id }
     }
+    
+    func isDuplicate(name: String) -> Bool {
+        subscriptions.contains { $0.name == name }
+    }
 }
 
 
