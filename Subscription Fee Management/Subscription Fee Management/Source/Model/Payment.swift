@@ -42,6 +42,11 @@ class PaymentList: ObservableObject {
         return payments.first { $0.id == uuid }
     }
     
+    func getPaymentIdString(name: String, pay: Payment.method) -> String {
+        let find = payments.first { $0.name == name && $0.pay == pay }
+        return find?.id.uuidString ?? ""
+    }
+    
     func isDuplicate(name: String, pay: Payment.method) -> Bool {
         payments.contains { $0.name == name } && payments.contains { $0.pay == pay }
     }

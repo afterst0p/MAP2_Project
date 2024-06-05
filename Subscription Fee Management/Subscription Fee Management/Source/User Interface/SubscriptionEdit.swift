@@ -1,27 +1,28 @@
 //
-//  SubscriptionAdd.swift
+//  SubscriptionEdit.swift
 //  Subscription Fee Management
 //
-//  Created by S.Top on 5/24/24.
+//  Created by S.Top on 6/5/24.
 //
 
 import SwiftUI
 import Combine
 
-struct SubscriptionAdd: View {
+struct SubscriptionEdit: View {
     @Environment(\.presentationMode) var presentationMode
 
     @ObservedObject var subscriptionList: SubscriptionList
     @ObservedObject var categoryList: CustomCategoryList
     @ObservedObject var paymentList: PaymentList
-    @State private var name: String = ""
-    @State private var payDay: Int = 1
-    @State private var payMonth: Int = 1
-    @State private var isYearly: Bool = false
-    @State private var priceString: String = ""
-    @State private var categoryId: String = ""
-    @State private var paymentPay: Payment.method? = nil
-    @State private var paymentId: String = ""
+    private var subscriptionId: String
+    @State private var name: String
+    @State private var payDay: Int
+    @State private var payMonth: Int
+    @State private var isYearly: Bool
+    @State private var priceString: String
+    @State private var categoryId: String
+    @State private var paymentPay: Payment.method?
+    @State private var paymentId: String
     
     @State private var newCategoryName: String = ""
     @State private var newPaymentName: String = ""
@@ -34,14 +35,38 @@ struct SubscriptionAdd: View {
     @State private var alertTitle: String = ""
     @State private var alertMessage: String = ""
     
+    init(subscriptionList: SubscriptionList, categoryList: CustomCategoryList, paymentList: PaymentList, subscription: Subscription, category: CustomCategory?, payment: Payment?) {
+        self.subscriptionList = subscriptionList
+        self.categoryList = categoryList
+        self.paymentList = paymentList
+        self.subscriptionId = subscription.id.uuidString
+        self.name = subscription.name
+        self.isYearly = subscription.yearly        
+        self.payMonth = subscription.payDate.month ?? 1
+        self.payDay = subscription.payDate.day!
+        self.priceString = String(subscription.price)
+        if let category = category {
+            self.categoryId = category.id.uuidString
+        } else {
+            self.categoryId = ""
+        }
+        if let payment = payment {
+            self.paymentPay = payment.pay
+            self.paymentId = payment.id.uuidString
+        } else {
+            self.paymentPay = nil
+            self.paymentId = ""
+        }
+    }
+    
     var body: some View {
         NavigationView {
             List {
                 necessaryInformation
                 additionalInformation
-                addButton
+                editButton
             }
-            .navigationTitle("구독 추가")
+            .navigationTitle("구독 수정")
             .navigationBarItems(trailing: Button(action: {
                 presentationMode.wrappedValue.dismiss()
             }) {
@@ -51,7 +76,7 @@ struct SubscriptionAdd: View {
     }
     
     var necessaryInformation: some View {
-        Section(header: Text("필수 정보 입력")) {
+        Section(header: Text("필수 정보 수정")) {
             VStack(alignment: .leading) {
                 Text("서비스 이름")
                 TextField("서비스 이름을 입력해 주세요.", text: $name)
@@ -137,7 +162,7 @@ struct SubscriptionAdd: View {
     }
     
     var additionalInformation: some View {
-        Section(header: Text("부가 정보 입력")) {
+        Section(header: Text("부가 정보 수정")) {
             VStack {
                 Picker("카테고리", selection: $categoryId) {
                     Text("( 미지정 )").tag("")
@@ -272,7 +297,7 @@ struct SubscriptionAdd: View {
         
     }
     
-    var addButton: some View {
+    var editButton: some View {
         Button(action: {
             guard !name.isEmpty else {
                 alertTitle = "서비스 이름 입력"
@@ -280,7 +305,7 @@ struct SubscriptionAdd: View {
                 showWrongInputAlert = true
                 return
             }
-            if subscriptionList.isDuplicate(name: name) {
+            if subscriptionList.isDuplicate(name: name, uuidString: subscriptionId) {
                 alertTitle = "서비스 이름 중복"
                 alertMessage = "다른 이름을 입력해주세요."
                 showWrongInputAlert = true
@@ -302,7 +327,7 @@ struct SubscriptionAdd: View {
             if paymentPay == nil {
                 paymentId = ""
             }
-            addSubscription()
+            editSubscription()
         }) {
             Text("저장")
                 .frame(maxWidth: .infinity)
@@ -316,8 +341,8 @@ struct SubscriptionAdd: View {
         }
     }
     
-    func addSubscription() {
-        subscriptionList.subscriptions.append(Subscription(name: name, yearly: isYearly, price: Int(priceString) ?? 0, payDate: DateComponents(month:payMonth, day:payDay), categoryID: categoryId, paymentID: paymentId))
+    func editSubscription() {
+        subscriptionList.update(uuidString: subscriptionId, subscription: Subscription(name: name, yearly: isYearly, price: Int(priceString) ?? 0, payDate: DateComponents(month:payMonth, day:payDay), categoryID: categoryId, paymentID: paymentId))
         presentationMode.wrappedValue.dismiss()
     }
 }

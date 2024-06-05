@@ -11,6 +11,7 @@ struct SubscriptionPage: View {
     @StateObject var subscriptionList: SubscriptionList
     @StateObject var categoryList: CustomCategoryList
     @StateObject var paymentList: PaymentList
+    
     @State private var stackPath = NavigationPath()
     @State private var isAddingSubscription = false
     
@@ -32,6 +33,8 @@ struct SubscriptionPage: View {
             }
             .navigationDestination(for: Int.self) { i in
                 SubscriptionDetail(subscriptionList: subscriptionList,
+                                   categoryList: categoryList,
+                                   paymentList: paymentList,
                                    subscription: subscriptionList.subscriptions[i],
                                    category: categoryList.getCategoryByUUID(uuidString: subscriptionList.subscriptions[i].categoryID),
                                    payment: paymentList.getPaymentByUUID(uuidString: subscriptionList.subscriptions[i].paymentID))
@@ -40,7 +43,7 @@ struct SubscriptionPage: View {
             .navigationBarItems(trailing: Button(action: {
                 isAddingSubscription = true
             }) {
-                Text("구독 추가")
+                Text("추가")
             })
             .sheet(isPresented: $isAddingSubscription) {
                 SubscriptionAdd(subscriptionList: subscriptionList,

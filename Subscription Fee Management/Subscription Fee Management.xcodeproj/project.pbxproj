@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F3590B02C104C6B0079DFEA /* SubscriptionEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3590AF2C104C6B0079DFEA /* SubscriptionEdit.swift */; };
 		9F42EE552BFF03350072A6E9 /* SubscriptionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F42EE542BFF03350072A6E9 /* SubscriptionDetail.swift */; };
 		9F42EE5B2BFF6B3E0072A6E9 /* CustomCategoryData.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F42EE5A2BFF6B3E0072A6E9 /* CustomCategoryData.json */; };
 		9F42EE5D2BFF6B7C0072A6E9 /* PaymentData.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F42EE5C2BFF6B7C0072A6E9 /* PaymentData.json */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9F3590AF2C104C6B0079DFEA /* SubscriptionEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionEdit.swift; sourceTree = "<group>"; };
 		9F42EE542BFF03350072A6E9 /* SubscriptionDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionDetail.swift; sourceTree = "<group>"; };
 		9F42EE5A2BFF6B3E0072A6E9 /* CustomCategoryData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CustomCategoryData.json; sourceTree = "<group>"; };
 		9F42EE5C2BFF6B7C0072A6E9 /* PaymentData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PaymentData.json; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			children = (
 				9FB9A7FA2BFE171D00DAACBB /* SubscriptionPage.swift */,
 				9F6D97042BFFA087004CFE30 /* SubscriptionAdd.swift */,
+				9F3590AF2C104C6B0079DFEA /* SubscriptionEdit.swift */,
 				9F42EE542BFF03350072A6E9 /* SubscriptionDetail.swift */,
 			);
 			path = "User Interface";
@@ -223,6 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F3590B02C104C6B0079DFEA /* SubscriptionEdit.swift in Sources */,
 				9FB9A80C2BFE3B0300DAACBB /* Subscription.swift in Sources */,
 				9FB9A7FB2BFE171D00DAACBB /* SubscriptionPage.swift in Sources */,
 				9FB9A7F92BFE171D00DAACBB /* Subscription_Fee_ManagementApp.swift in Sources */,

@@ -8,17 +8,25 @@
 import SwiftUI
 
 struct SubscriptionDetail: View {
-    @ObservedObject var subscriptionList: SubscriptionList
     @Environment(\.presentationMode) var presentationMode
+    
+    @ObservedObject var subscriptionList: SubscriptionList
+    @ObservedObject var categoryList: CustomCategoryList
+    @ObservedObject var paymentList: PaymentList
+    
     let subscription: Subscription
     let category: CustomCategory?
     let payment: Payment?
     var price: String
     var dateString: String
-    @State private var showDeleteAlert = false
     
-    init(subscriptionList: SubscriptionList, subscription: Subscription, category: CustomCategory?, payment: Payment?) {
+    @State private var showDeleteAlert = false
+    @State private var isEditingSubscription = false
+    
+    init(subscriptionList: SubscriptionList, categoryList: CustomCategoryList, paymentList: PaymentList, subscription: Subscription, category: CustomCategory?, payment: Payment?) {
         self.subscriptionList = subscriptionList
+        self.categoryList = categoryList
+        self.paymentList = paymentList
         self.subscription = subscription
         self.category = category
         self.payment = payment
@@ -88,12 +96,6 @@ struct SubscriptionDetail: View {
                 }
             }
             Section {
-                Button(action: editSubscription) {
-                    Text("구독 수정")
-                        .frame(maxWidth: .infinity)
-                }
-            }
-            Section {
                 Button(action: { self.showDeleteAlert = true }) {
                     Text("구독 삭제")
                         .foregroundStyle(.red)
@@ -112,10 +114,19 @@ struct SubscriptionDetail: View {
             }
         }
         .navigationTitle(subscription.name)
-    }
-    
-    func editSubscription() {
-        
+        .navigationBarItems(trailing: Button(action: {
+            isEditingSubscription = true
+        }) {
+            Text("수정")
+        })
+        .sheet(isPresented: $isEditingSubscription) {
+            SubscriptionEdit(subscriptionList: subscriptionList,
+                             categoryList: categoryList,
+                             paymentList: paymentList,
+                             subscription: subscription,
+                             category: category,
+                             payment: payment)
+        }
     }
     
     func deleteSubscription() {
@@ -125,5 +136,5 @@ struct SubscriptionDetail: View {
 }
 
 #Preview {
-    SubscriptionDetail(subscriptionList: SubscriptionList(), subscription: subscriptionSample[0], category: categorySamples[0], payment: paymentSamples[0])
+    SubscriptionDetail(subscriptionList: SubscriptionList(), categoryList: CustomCategoryList(), paymentList: PaymentList(),subscription: subscriptionSample[0], category: categorySamples[0], payment: paymentSamples[0])
 }
