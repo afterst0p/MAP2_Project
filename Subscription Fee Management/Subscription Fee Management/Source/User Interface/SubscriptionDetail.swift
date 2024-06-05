@@ -67,15 +67,24 @@ struct SubscriptionDetail: View {
                     Spacer()
                     Text(category?.name ?? "없음")
                 }
-                HStack {
-                    Text("결제 수단 유형").foregroundStyle(.gray)
-                    Spacer()
-                    Text(payment?.pay.rawValue ?? "없음")
+                if (payment == nil) {
+                    HStack {
+                        Text("결제 수단").foregroundStyle(.gray)
+                        Spacer()
+                        Text("없음")
+                    }
                 }
-                HStack {
-                    Text("결제 수단 이름").foregroundStyle(.gray)
-                    Spacer()
-                    Text(payment?.name ?? "없음")
+                else {
+                    HStack {
+                        Text("결제 수단 유형").foregroundStyle(.gray)
+                        Spacer()
+                        Text(payment?.pay.rawValue ?? "없음")
+                    }
+                    HStack {
+                        Text("결제 수단 이름").foregroundStyle(.gray)
+                        Spacer()
+                        Text(payment?.name ?? "없음")
+                    }
                 }
             }
             Section {
