@@ -9,7 +9,7 @@ import Foundation
 
 // 결제 방법 구조체
 struct Payment {
-    enum method: String, Decodable {
+    enum method: String, Decodable, RawRepresentable, CaseIterable {
         case account = "계좌", card = "카드", payservice = "간편 결제"
     }
     
