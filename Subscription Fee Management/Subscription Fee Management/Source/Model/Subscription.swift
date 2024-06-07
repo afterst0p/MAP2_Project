@@ -7,7 +7,7 @@
 
 import Foundation
 
-// 구독 정보 구조체
+// 구독 정보 모델
 struct Subscription {
     let id: UUID = UUID()
     var name: String
@@ -34,34 +34,6 @@ struct Subscription {
         }
     }
 }
-
-// 구독 정보들을 모으는 클래스
-class SubscriptionList: ObservableObject {
-    @Published var subscriptions : [Subscription]
-    
-    init(filename: String = "SubscriptionData.json") {
-        self.subscriptions = Bundle.main.decode(filename: filename, as: [Subscription].self)
-    }
-    
-    func update(uuidString: String, subscription: Subscription) {
-        if let index = subscriptions.firstIndex(where: { $0.id.uuidString == uuidString }) {
-            subscriptions[index] = subscription
-        }
-    }
-    
-    func delete(subscription: Subscription) {
-        subscriptions.removeAll { $0.id == subscription.id }
-    }
-    
-    func isDuplicate(name: String) -> Bool {
-        subscriptions.contains { $0.name == name }
-    }
-    
-    func isDuplicate(name: String, uuidString: String) -> Bool {
-        subscriptions.contains { $0.name == name && $0.id.uuidString != uuidString }
-    }
-}
-
 
 let subscriptionSample = [
     Subscription(name: "스포티파이", yearly: false, price: 12000, payDate: DateComponents(day: 28), categoryID: "3B34D425-6C38-4FC9-A59E-8B71F62492C6", paymentID: "A9A6E3F7-3422-4F90-9A79-EC98F59DCDB3"),

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		9F3590B02C104C6B0079DFEA /* SubscriptionEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3590AF2C104C6B0079DFEA /* SubscriptionEdit.swift */; };
+		9F3D766A2C12B19F003A5FF8 /* SubscriptionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3D76692C12B19F003A5FF8 /* SubscriptionList.swift */; };
+		9F3D766C2C12B1BD003A5FF8 /* CustomCategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3D766B2C12B1BD003A5FF8 /* CustomCategoryList.swift */; };
+		9F3D766E2C12B1CF003A5FF8 /* PaymentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3D766D2C12B1CF003A5FF8 /* PaymentList.swift */; };
 		9F42EE552BFF03350072A6E9 /* SubscriptionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F42EE542BFF03350072A6E9 /* SubscriptionDetail.swift */; };
 		9F42EE5B2BFF6B3E0072A6E9 /* CustomCategoryData.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F42EE5A2BFF6B3E0072A6E9 /* CustomCategoryData.json */; };
 		9F42EE5D2BFF6B7C0072A6E9 /* PaymentData.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F42EE5C2BFF6B7C0072A6E9 /* PaymentData.json */; };
@@ -25,6 +28,9 @@
 
 /* Begin PBXFileReference section */
 		9F3590AF2C104C6B0079DFEA /* SubscriptionEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionEdit.swift; sourceTree = "<group>"; };
+		9F3D76692C12B19F003A5FF8 /* SubscriptionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionList.swift; sourceTree = "<group>"; };
+		9F3D766B2C12B1BD003A5FF8 /* CustomCategoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCategoryList.swift; sourceTree = "<group>"; };
+		9F3D766D2C12B1CF003A5FF8 /* PaymentList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentList.swift; sourceTree = "<group>"; };
 		9F42EE542BFF03350072A6E9 /* SubscriptionDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionDetail.swift; sourceTree = "<group>"; };
 		9F42EE5A2BFF6B3E0072A6E9 /* CustomCategoryData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CustomCategoryData.json; sourceTree = "<group>"; };
 		9F42EE5C2BFF6B7C0072A6E9 /* PaymentData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PaymentData.json; sourceTree = "<group>"; };
@@ -52,6 +58,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F3D76682C12B106003A5FF8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9F3D76692C12B19F003A5FF8 /* SubscriptionList.swift */,
+				9F3D766B2C12B1BD003A5FF8 /* CustomCategoryList.swift */,
+				9F3D766D2C12B1CF003A5FF8 /* PaymentList.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		9FB9A7EC2BFE171D00DAACBB = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +109,7 @@
 				9FB9A8092BFE35B200DAACBB /* User Interface */,
 				9FB9A81A2BFE577200DAACBB /* Helper */,
 				9FB9A80A2BFE36A200DAACBB /* Model */,
+				9F3D76682C12B106003A5FF8 /* ViewModel */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -228,12 +245,15 @@
 			files = (
 				9F3590B02C104C6B0079DFEA /* SubscriptionEdit.swift in Sources */,
 				9FB9A80C2BFE3B0300DAACBB /* Subscription.swift in Sources */,
+				9F3D766C2C12B1BD003A5FF8 /* CustomCategoryList.swift in Sources */,
 				9FB9A7FB2BFE171D00DAACBB /* SubscriptionPage.swift in Sources */,
 				9FB9A7F92BFE171D00DAACBB /* Subscription_Fee_ManagementApp.swift in Sources */,
 				9F42EE552BFF03350072A6E9 /* SubscriptionDetail.swift in Sources */,
+				9F3D766E2C12B1CF003A5FF8 /* PaymentList.swift in Sources */,
 				9FB9A81D2BFE579800DAACBB /* BundleExtension.swift in Sources */,
 				9FB9A80E2BFE3D6A00DAACBB /* CustomCategory.swift in Sources */,
 				9F6D97052BFFA087004CFE30 /* SubscriptionAdd.swift in Sources */,
+				9F3D766A2C12B19F003A5FF8 /* SubscriptionList.swift in Sources */,
 				9FB9A8102BFE3DB400DAACBB /* Payment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

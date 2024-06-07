@@ -7,7 +7,7 @@
 
 import Foundation
 
-// 카테고리 구조체
+// 카테고리 모델
 struct CustomCategory {
     let id: UUID
     var name: String
@@ -15,34 +15,6 @@ struct CustomCategory {
     init(id: UUID = UUID(), name: String) {
         self.id = id
         self.name = name
-    }
-}
-
-// 카테고리를 모으는 클래스
-class CustomCategoryList: ObservableObject {
-    @Published var customCategories : [CustomCategory]
-    
-    init(filename: String = "CustomCategoryData.json") {
-        self.customCategories = Bundle.main.decode(filename: filename, as: [CustomCategory].self)
-    }
-    
-    func getCategoryByUUID(uuidString: String?) -> CustomCategory? {
-        guard let uuidStringUnwrapped = uuidString else {
-                    return nil
-            }
-        guard let uuid = UUID(uuidString: uuidStringUnwrapped) else {
-                    return nil
-            }
-        return customCategories.first { $0.id == uuid }
-    }
-    
-    func getCategoryIdString(name: String) -> String {
-        let find = customCategories.first { $0.name == name }
-        return find?.id.uuidString ?? ""
-    }
-    
-    func isDuplicate(name: String) -> Bool {
-        customCategories.contains { $0.name == name }
     }
 }
 

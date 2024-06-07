@@ -7,7 +7,7 @@
 
 import Foundation
 
-// 결제 방법 구조체
+// 결제 방법 모델
 struct Payment {
     enum method: String, Decodable, RawRepresentable, CaseIterable {
         case account = "계좌", card = "카드", payservice = "간편 결제"
@@ -23,35 +23,6 @@ struct Payment {
         self.pay = pay
     }
 }
-
-// 결제 수단을 모으는 클래스
-class PaymentList: ObservableObject {
-    @Published var payments : [Payment]
-    
-    init(filename: String = "PaymentData.json") {
-        self.payments = Bundle.main.decode(filename: filename, as: [Payment].self)
-    }
-    
-    func getPaymentByUUID(uuidString: String?) -> Payment? {
-        guard let uuidStringUnwrapped = uuidString else {
-                    return nil
-            }
-        guard let uuid = UUID(uuidString: uuidStringUnwrapped) else {
-                    return nil
-            }
-        return payments.first { $0.id == uuid }
-    }
-    
-    func getPaymentIdString(name: String, pay: Payment.method) -> String {
-        let find = payments.first { $0.name == name && $0.pay == pay }
-        return find?.id.uuidString ?? ""
-    }
-    
-    func isDuplicate(name: String, pay: Payment.method) -> Bool {
-        payments.contains { $0.name == name } && payments.contains { $0.pay == pay }
-    }
-}
-
 
 let paymentSamples = [
     Payment(id: UUID(uuidString: "A9A6E3F7-3422-4F90-9A79-EC98F59DCDB3") ?? UUID(), name: "하나 계좌", pay: Payment.method.account),
