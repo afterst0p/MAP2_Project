@@ -47,11 +47,8 @@ struct SubscriptionPage: View {
                                    category: categoryList.getCategoryByUUID(uuidString: subscriptionList.subscriptions[i].categoryID),
                                    payment: paymentList.getPaymentByUUID(uuidString: subscriptionList.subscriptions[i].paymentID))
             }
-            .padding(.top, -10)
-            .navigationBarItems(leading: Text("구독 목록")
-                .font(.largeTitle)
-                .fontWeight(.bold),
-                                trailing: Button(action: {
+            .navigationBarTitle("구독 목록")
+            .navigationBarItems(trailing: Button(action: {
                 isAddingSubscription = true
             }) {
                 Text("추가")
@@ -61,6 +58,7 @@ struct SubscriptionPage: View {
                                 categoryList: categoryList,
                                 paymentList: paymentList)
             }
+            .contentMargins(.top, 20)
         }
     }
 }

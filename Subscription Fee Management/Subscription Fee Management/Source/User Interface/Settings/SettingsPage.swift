@@ -50,16 +50,14 @@ struct SettingsPage: View {
                     }
                 }
             }
-            .padding(.top, -10)
-            .navigationBarItems(leading: Text("설정")
-                .font(.largeTitle)
-                .fontWeight(.bold))
+            .navigationBarTitle("설정")
             .sheet(isPresented: $isCategoriesEditing) {
                 CategoriesEdit(categoryList: categoryList)
             }
             .sheet(isPresented: $isPaymentsEditing) {
                 PaymentsEdit(paymentList: paymentList)
             }
+            .contentMargins(.top, 20)
         }
     }
 }

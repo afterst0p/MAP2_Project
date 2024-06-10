@@ -25,7 +25,7 @@ struct CategoriesEdit: View {
         NavigationView {
             List {
                 if (isEditing) {
-                    Section {
+                    Section() {
                         Text("영역을 터치하면 이름을 수정할 수 있습니다.")
                     }
                 }
@@ -76,14 +76,12 @@ struct CategoriesEdit: View {
                 .onMove(perform: moveItems)
             }
             .environment(\.editMode, .constant(self.isEditing ? EditMode.active : EditMode.inactive)).animation(Animation.spring())
-            .navigationBarItems(leading: Text("카테고리 관리")
-                .font(.title)
-                .fontWeight(.bold),
-                                trailing: HStack {
+            .navigationBarTitle("카테고리 관리")
+            .navigationBarItems(trailing: HStack {
                 Button(action: {
                     self.isEditing.toggle()
                 }) {
-                    Text(isEditing ? "완료" : "수정")
+                    Text(isEditing ? "완료" : "수정").frame(width: 40)
                 }
                 Button(action: {
                     presentationMode.wrappedValue.dismiss()
@@ -91,6 +89,7 @@ struct CategoriesEdit: View {
                     Text("닫기")
                 }
             })
+            .contentMargins(.top, 20)
         }
     }
     

@@ -87,14 +87,12 @@ struct PaymentsEdit: View {
                 .onMove(perform: moveItems)
             }
             .environment(\.editMode, .constant(self.isEditing ? EditMode.active : EditMode.inactive)).animation(Animation.spring())
-            .navigationBarItems(leading: Text("결제 수단 관리")
-                .font(.title)
-                .fontWeight(.bold),
-                                trailing: HStack {
+            .navigationBarTitle("결제 수단 관리")
+            .navigationBarItems(trailing: HStack {
                 Button(action: {
                     self.isEditing.toggle()
                 }) {
-                    Text(isEditing ? "완료" : "수정")
+                    Text(isEditing ? "완료" : "수정").frame(width: 40)
                 }
                 Button(action: {
                     presentationMode.wrappedValue.dismiss()
@@ -102,7 +100,7 @@ struct PaymentsEdit: View {
                     Text("닫기")
                 }
             })
-            
+            .contentMargins(.top, 20)
         }
     }
     
@@ -116,5 +114,5 @@ struct PaymentsEdit: View {
 }
 
 #Preview {
-    CategoriesEdit(categoryList: CustomCategoryList())
+    PaymentsEdit(paymentList: PaymentList())
 }
