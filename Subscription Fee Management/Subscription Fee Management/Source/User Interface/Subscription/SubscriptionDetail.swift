@@ -114,7 +114,16 @@ struct SubscriptionDetail: View {
             }
         }
         .navigationBarTitle(subscription.name, displayMode: .large)
-        .navigationBarItems(trailing: Button(action: {
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: Button(action: {
+            self.presentationMode.wrappedValue.dismiss()
+        }) {
+            HStack {
+                Image(systemName: "chevron.left") // 화살표 Image
+                    .aspectRatio(contentMode: .fit)
+                Text("구독 목록")
+            }
+        }, trailing: Button(action: {
             isEditingSubscription = true
         }) {
             Text("수정")
