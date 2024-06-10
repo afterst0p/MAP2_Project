@@ -8,7 +8,7 @@
 import Foundation
 
 // 구독 정보 모델
-struct Subscription {
+struct Subscription: Hashable {
     let id: UUID = UUID()
     var name: String
     var yearly: Bool
