@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct SubscriptionPage: View {
-    @StateObject var subscriptionList: SubscriptionList
-    @StateObject var categoryList: CustomCategoryList
-    @StateObject var paymentList: PaymentList
+    @ObservedObject var subscriptionList: SubscriptionList
+    @ObservedObject var categoryList: CustomCategoryList
+    @ObservedObject var paymentList: PaymentList
     
     @State private var stackPath = NavigationPath()
     @State private var isAddingSubscription = false
@@ -39,8 +39,11 @@ struct SubscriptionPage: View {
                                    category: categoryList.getCategoryByUUID(uuidString: subscriptionList.subscriptions[i].categoryID),
                                    payment: paymentList.getPaymentByUUID(uuidString: subscriptionList.subscriptions[i].paymentID))
             }
-            .navigationBarTitle(Text("구독 목록"))
-            .navigationBarItems(trailing: Button(action: {
+            .padding(.top, -10)
+            .navigationBarItems(leading: Text("구독 목록")
+                .font(.largeTitle)
+                .fontWeight(.bold),
+                                trailing: Button(action: {
                 isAddingSubscription = true
             }) {
                 Text("추가")

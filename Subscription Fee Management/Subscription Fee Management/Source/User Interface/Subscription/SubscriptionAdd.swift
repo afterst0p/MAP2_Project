@@ -41,8 +41,10 @@ struct SubscriptionAdd: View {
                 additionalInformation
                 addButton
             }
-            .navigationTitle("구독 추가")
-            .navigationBarItems(trailing: Button(action: {
+            .navigationBarItems(leading: Text("구독 추가")
+                .font(.title)
+                .fontWeight(.bold),
+                                trailing: Button(action: {
                 presentationMode.wrappedValue.dismiss()
             }) {
                 Text("취소")

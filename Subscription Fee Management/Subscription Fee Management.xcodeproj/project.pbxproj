@@ -11,6 +11,10 @@
 		9F3D766A2C12B19F003A5FF8 /* SubscriptionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3D76692C12B19F003A5FF8 /* SubscriptionList.swift */; };
 		9F3D766C2C12B1BD003A5FF8 /* CustomCategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3D766B2C12B1BD003A5FF8 /* CustomCategoryList.swift */; };
 		9F3D766E2C12B1CF003A5FF8 /* PaymentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3D766D2C12B1CF003A5FF8 /* PaymentList.swift */; };
+		9F4186422C16826300C4E643 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4186412C16826300C4E643 /* MainTabView.swift */; };
+		9F4186472C16ACE100C4E643 /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4186462C16ACE100C4E643 /* SettingsPage.swift */; };
+		9F4186492C16C04B00C4E643 /* CategoriesEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4186482C16C04B00C4E643 /* CategoriesEdit.swift */; };
+		9F41864C2C16C06200C4E643 /* PaymentsEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F41864B2C16C06200C4E643 /* PaymentsEdit.swift */; };
 		9F42EE552BFF03350072A6E9 /* SubscriptionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F42EE542BFF03350072A6E9 /* SubscriptionDetail.swift */; };
 		9F42EE5B2BFF6B3E0072A6E9 /* CustomCategoryData.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F42EE5A2BFF6B3E0072A6E9 /* CustomCategoryData.json */; };
 		9F42EE5D2BFF6B7C0072A6E9 /* PaymentData.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F42EE5C2BFF6B7C0072A6E9 /* PaymentData.json */; };
@@ -31,6 +35,10 @@
 		9F3D76692C12B19F003A5FF8 /* SubscriptionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionList.swift; sourceTree = "<group>"; };
 		9F3D766B2C12B1BD003A5FF8 /* CustomCategoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCategoryList.swift; sourceTree = "<group>"; };
 		9F3D766D2C12B1CF003A5FF8 /* PaymentList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentList.swift; sourceTree = "<group>"; };
+		9F4186412C16826300C4E643 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		9F4186462C16ACE100C4E643 /* SettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPage.swift; sourceTree = "<group>"; };
+		9F4186482C16C04B00C4E643 /* CategoriesEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesEdit.swift; sourceTree = "<group>"; };
+		9F41864B2C16C06200C4E643 /* PaymentsEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsEdit.swift; sourceTree = "<group>"; };
 		9F42EE542BFF03350072A6E9 /* SubscriptionDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionDetail.swift; sourceTree = "<group>"; };
 		9F42EE5A2BFF6B3E0072A6E9 /* CustomCategoryData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CustomCategoryData.json; sourceTree = "<group>"; };
 		9F42EE5C2BFF6B7C0072A6E9 /* PaymentData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PaymentData.json; sourceTree = "<group>"; };
@@ -66,6 +74,27 @@
 				9F3D766D2C12B1CF003A5FF8 /* PaymentList.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9F4186402C16824800C4E643 /* Subscription */ = {
+			isa = PBXGroup;
+			children = (
+				9FB9A7FA2BFE171D00DAACBB /* SubscriptionPage.swift */,
+				9F6D97042BFFA087004CFE30 /* SubscriptionAdd.swift */,
+				9F3590AF2C104C6B0079DFEA /* SubscriptionEdit.swift */,
+				9F42EE542BFF03350072A6E9 /* SubscriptionDetail.swift */,
+			);
+			path = Subscription;
+			sourceTree = "<group>";
+		};
+		9F4186452C16ACC300C4E643 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				9F4186462C16ACE100C4E643 /* SettingsPage.swift */,
+				9F41864B2C16C06200C4E643 /* PaymentsEdit.swift */,
+				9F4186482C16C04B00C4E643 /* CategoriesEdit.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		9FB9A7EC2BFE171D00DAACBB = {
@@ -107,9 +136,9 @@
 			children = (
 				9FB9A8082BFE358300DAACBB /* Application */,
 				9FB9A8092BFE35B200DAACBB /* User Interface */,
-				9FB9A81A2BFE577200DAACBB /* Helper */,
 				9FB9A80A2BFE36A200DAACBB /* Model */,
 				9F3D76682C12B106003A5FF8 /* ViewModel */,
+				9FB9A81A2BFE577200DAACBB /* Helper */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -136,10 +165,9 @@
 		9FB9A8092BFE35B200DAACBB /* User Interface */ = {
 			isa = PBXGroup;
 			children = (
-				9FB9A7FA2BFE171D00DAACBB /* SubscriptionPage.swift */,
-				9F6D97042BFFA087004CFE30 /* SubscriptionAdd.swift */,
-				9F3590AF2C104C6B0079DFEA /* SubscriptionEdit.swift */,
-				9F42EE542BFF03350072A6E9 /* SubscriptionDetail.swift */,
+				9F4186412C16826300C4E643 /* MainTabView.swift */,
+				9F4186402C16824800C4E643 /* Subscription */,
+				9F4186452C16ACC300C4E643 /* Settings */,
 			);
 			path = "User Interface";
 			sourceTree = "<group>";
@@ -247,9 +275,13 @@
 				9FB9A80C2BFE3B0300DAACBB /* Subscription.swift in Sources */,
 				9F3D766C2C12B1BD003A5FF8 /* CustomCategoryList.swift in Sources */,
 				9FB9A7FB2BFE171D00DAACBB /* SubscriptionPage.swift in Sources */,
+				9F41864C2C16C06200C4E643 /* PaymentsEdit.swift in Sources */,
 				9FB9A7F92BFE171D00DAACBB /* Subscription_Fee_ManagementApp.swift in Sources */,
+				9F4186472C16ACE100C4E643 /* SettingsPage.swift in Sources */,
 				9F42EE552BFF03350072A6E9 /* SubscriptionDetail.swift in Sources */,
 				9F3D766E2C12B1CF003A5FF8 /* PaymentList.swift in Sources */,
+				9F4186492C16C04B00C4E643 /* CategoriesEdit.swift in Sources */,
+				9F4186422C16826300C4E643 /* MainTabView.swift in Sources */,
 				9FB9A81D2BFE579800DAACBB /* BundleExtension.swift in Sources */,
 				9FB9A80E2BFE3D6A00DAACBB /* CustomCategory.swift in Sources */,
 				9F6D97052BFFA087004CFE30 /* SubscriptionAdd.swift in Sources */,

@@ -66,8 +66,10 @@ struct SubscriptionEdit: View {
                 additionalInformation
                 editButton
             }
-            .navigationTitle("구독 수정")
-            .navigationBarItems(trailing: Button(action: {
+            .navigationBarItems(leading: Text("구독 수정")
+                .font(.title)
+                .fontWeight(.bold),
+                                trailing: Button(action: {
                 presentationMode.wrappedValue.dismiss()
             }) {
                 Text("취소")

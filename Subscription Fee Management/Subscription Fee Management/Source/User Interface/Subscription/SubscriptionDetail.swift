@@ -113,7 +113,7 @@ struct SubscriptionDetail: View {
                 }
             }
         }
-        .navigationTitle(subscription.name)
+        .navigationBarTitle(subscription.name, displayMode: .large)
         .navigationBarItems(trailing: Button(action: {
             isEditingSubscription = true
         }) {
@@ -128,6 +128,7 @@ struct SubscriptionDetail: View {
                              payment: payment)
         }
     }
+    
     
     func deleteSubscription() {
         subscriptionList.delete(subscription: subscription)

@@ -5,7 +5,7 @@
 //  Created by S.Top on 6/7/24.
 //
 
-import Foundation
+import SwiftUI
 
 // 구독 정보들을 모으는 뷰모델
 class SubscriptionList: ObservableObject {

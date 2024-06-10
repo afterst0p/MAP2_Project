@@ -11,7 +11,7 @@ import SwiftUI
 struct Subscription_Fee_ManagementApp: App {
     var body: some Scene {
         WindowGroup {
-            SubscriptionPage(subscriptionList: SubscriptionList(), categoryList: CustomCategoryList(), paymentList: PaymentList())
+            MainTabView(subscriptionList: SubscriptionList(), categoryList: CustomCategoryList(), paymentList: PaymentList())
         }
     }
 }
