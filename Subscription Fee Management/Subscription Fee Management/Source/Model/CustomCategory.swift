@@ -12,15 +12,18 @@ import CoreData
 struct CustomCategory {
     let id: UUID
     var name: String
+    var order: Int
     
-    init(id: UUID = UUID(), name: String) {
+    init(id: UUID = UUID(), name: String, order: Int = 0) {
         self.id = id
         self.name = name
+        self.order = order
     }
     
     init(cdCustomCategory: CDCustomCategory) {
         self.id = cdCustomCategory.id!
         self.name = cdCustomCategory.name!
+        self.order = Int(cdCustomCategory.order)
     }
     
     func toCDCustomCategory(context: NSManagedObjectContext) -> CDCustomCategory {
@@ -28,6 +31,7 @@ struct CustomCategory {
         
         cdCustomCategory.id = self.id
         cdCustomCategory.name = self.name
+        cdCustomCategory.order = Int32(self.order)
         
         return cdCustomCategory
     }

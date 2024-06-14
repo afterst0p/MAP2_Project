@@ -26,6 +26,9 @@ class CustomCategoryList: ObservableObject {
     
     func fetch() {
         let request: NSFetchRequest<CDCustomCategory> = CDCustomCategory.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "order", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
+        
         do {
             let cdCustomCategories = try viewContext.fetch(request)
             customCategories = cdCustomCategories.map { CustomCategory(cdCustomCategory: $0) }
@@ -35,6 +38,9 @@ class CustomCategoryList: ObservableObject {
     }
     
     func add(customCategory: CustomCategory) {
+        var orderedCustomCategory = customCategory
+        orderedCustomCategory.order = customCategories.count + 1
+        
         let cdCustomCategory = customCategory.toCDCustomCategory(context: viewContext)
         saveContext()
     }
@@ -56,6 +62,8 @@ class CustomCategoryList: ObservableObject {
     }
     
     func delete(at offsets: IndexSet) {
+        customCategories.remove(atOffsets: offsets)
+        
         offsets.forEach { index in
             let customCategory = customCategories[index]
             let request: NSFetchRequest<CDCustomCategory> = CDCustomCategory.fetchRequest()
@@ -75,6 +83,25 @@ class CustomCategoryList: ObservableObject {
     
     func move(from source: IndexSet, to destination: Int) {
         customCategories.move(fromOffsets: source, toOffset: destination)
+        
+        for i in 0..<customCategories.count {
+            customCategories[i].order = i
+        }
+        
+        for customCategory in customCategories {
+            let request: NSFetchRequest<CDCustomCategory> = CDCustomCategory.fetchRequest()
+            request.predicate = NSPredicate(format: "id == %@", customCategory.id as CVarArg)
+            
+            do {
+                let cdCustomCategories = try viewContext.fetch(request)
+                if let cdCustomCategory = cdCustomCategories.first {
+                    cdCustomCategory.order = Int32(customCategory.order)
+                }
+            } catch {
+                print("Core Data에 CustomCategory 수정 실패: \(error)")
+            }
+        }
+        
         saveContext()
     }
     

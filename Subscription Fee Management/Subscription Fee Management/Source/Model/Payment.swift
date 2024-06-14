@@ -17,17 +17,20 @@ struct Payment {
     let id: UUID
     var name: String
     var pay: method
+    var order: Int
     
-    init(id: UUID = UUID(), name: String, pay: method) {
+    init(id: UUID = UUID(), name: String, pay: method, order: Int = 0) {
         self.id = id
         self.name = name
         self.pay = pay
+        self.order = order
     }
     
     init(cdPayment: CDPayment) {
         self.id = cdPayment.id!
         self.name = cdPayment.name!
         self.pay = method(rawValue: cdPayment.pay!)!
+        self.order = Int(cdPayment.order)
     }
     
     func toCDPayment(context: NSManagedObjectContext) -> CDPayment {
@@ -36,6 +39,7 @@ struct Payment {
         cdPayment.id = self.id
         cdPayment.name = self.name
         cdPayment.pay = self.pay.rawValue
+        cdPayment.order = Int32(self.order)
         
         return cdPayment
     }

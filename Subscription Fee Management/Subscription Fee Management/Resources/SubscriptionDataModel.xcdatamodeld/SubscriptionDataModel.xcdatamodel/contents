@@ -3,10 +3,12 @@
     <entity name="CDCustomCategory" representedClassName="CDCustomCategory" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="order" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="CDPayment" representedClassName="CDPayment" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="order" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="pay" optional="YES" attributeType="String"/>
     </entity>
     <entity name="CDSubscription" representedClassName="CDSubscription" syncable="YES" codeGenerationType="class">
