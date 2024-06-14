@@ -8,7 +8,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "848B3A5F-31AC-4CFA-BE26-D8183947745C"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Subscription Fee Management/Source/User Interface/Subscription/SubscriptionPage.swift"

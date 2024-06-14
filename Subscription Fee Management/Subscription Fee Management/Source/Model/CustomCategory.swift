@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 // 카테고리 모델
 struct CustomCategory {
@@ -15,6 +16,20 @@ struct CustomCategory {
     init(id: UUID = UUID(), name: String) {
         self.id = id
         self.name = name
+    }
+    
+    init(cdCustomCategory: CDCustomCategory) {
+        self.id = cdCustomCategory.id!
+        self.name = cdCustomCategory.name!
+    }
+    
+    func toCDCustomCategory(context: NSManagedObjectContext) -> CDCustomCategory {
+        let cdCustomCategory = CDCustomCategory(context: context)
+        
+        cdCustomCategory.id = self.id
+        cdCustomCategory.name = self.name
+        
+        return cdCustomCategory
     }
 }
 

@@ -179,7 +179,7 @@ struct SubscriptionAdd: View {
                                 showWrongCategoryInputAlert = true
                                 return
                             }
-                            categoryList.customCategories.append(CustomCategory(name: newCategoryName))
+                            categoryList.add(customCategory: CustomCategory(name: newCategoryName))
                             categoryId = categoryList.getCategoryIdString(name: newCategoryName)
                             newCategoryName = ""
                         }, label: {Text("추가")})
@@ -248,7 +248,7 @@ struct SubscriptionAdd: View {
                                     showWrongPaymentInputAlert = true
                                     return
                                 }
-                                paymentList.payments.append(Payment(name: newPaymentName, pay: paymentPay!))
+                                paymentList.add(payment: Payment(name: newPaymentName, pay: paymentPay!))
                                 paymentId = paymentList.getPaymentIdString(name: newPaymentName, pay: paymentPay!)
                                 newPaymentName = ""
                             }, label: {Text("추가")})
@@ -317,7 +317,7 @@ struct SubscriptionAdd: View {
     }
     
     func addSubscription() {
-        subscriptionList.subscriptions.append(Subscription(name: name, yearly: isYearly, price: Int(priceString) ?? 0, payDate: DateComponents(month:payMonth, day:payDay), categoryID: categoryId, paymentID: paymentId))
+        subscriptionList.add(subscription: Subscription(name: name, yearly: isYearly, price: Int(priceString) ?? 0, payDate: DateComponents(month:payMonth, day:payDay), categoryID: categoryId, paymentID: paymentId))
         presentationMode.wrappedValue.dismiss()
     }
 }

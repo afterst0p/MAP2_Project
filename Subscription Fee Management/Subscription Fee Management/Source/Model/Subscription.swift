@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 // 구독 정보 모델
 struct Subscription: Hashable {
@@ -33,6 +34,28 @@ struct Subscription: Hashable {
             self.paymentID = nil
         }
     }
+    
+    init(cdSubscription: CDSubscription) {
+        self.name = cdSubscription.name!
+        self.yearly = cdSubscription.yearly
+        self.price = Int(cdSubscription.price)
+        self.payDate = Calendar.current.dateComponents([.month, .day], from: cdSubscription.payDate!)
+        self.categoryID = cdSubscription.categoryID
+        self.paymentID = cdSubscription.paymentID
+    }
+    
+    func toCDSubscription(context: NSManagedObjectContext) -> CDSubscription {
+        let cdSubscription = CDSubscription(context: context)
+        
+        cdSubscription.name = self.name
+        cdSubscription.yearly = self.yearly
+        cdSubscription.price = Int32(self.price)
+        cdSubscription.payDate = Calendar.current.date(from: self.payDate) ?? Date()
+        cdSubscription.categoryID = self.categoryID
+        cdSubscription.paymentID = self.paymentID
+        
+        return cdSubscription
+    }
 }
 
 let subscriptionSample = [
@@ -43,3 +66,4 @@ let subscriptionSample = [
 
 extension Subscription: Decodable {}
 extension Subscription: Identifiable {}
+

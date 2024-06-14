@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22757" systemVersion="23E224" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="CDCustomCategory" representedClassName="CDCustomCategory" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="CDPayment" representedClassName="CDPayment" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="pay" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="CDSubscription" representedClassName="CDSubscription" syncable="YES" codeGenerationType="class">
+        <attribute name="categoryID" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="payDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="paymentID" optional="YES" attributeType="String"/>
+        <attribute name="price" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="yearly" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
+</model>

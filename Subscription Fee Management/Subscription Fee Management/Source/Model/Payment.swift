@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 // 결제 방법 모델
 struct Payment {
@@ -21,6 +22,22 @@ struct Payment {
         self.id = id
         self.name = name
         self.pay = pay
+    }
+    
+    init(cdPayment: CDPayment) {
+        self.id = cdPayment.id!
+        self.name = cdPayment.name!
+        self.pay = method(rawValue: cdPayment.pay!)!
+    }
+    
+    func toCDPayment(context: NSManagedObjectContext) -> CDPayment {
+        let cdPayment = CDPayment(context: context)
+        
+        cdPayment.id = self.id
+        cdPayment.name = self.name
+        cdPayment.pay = self.pay.rawValue
+        
+        return cdPayment
     }
 }
 

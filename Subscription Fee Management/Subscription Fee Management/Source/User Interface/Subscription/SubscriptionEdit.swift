@@ -204,7 +204,7 @@ struct SubscriptionEdit: View {
                                 showWrongCategoryInputAlert = true
                                 return
                             }
-                            categoryList.customCategories.append(CustomCategory(name: newCategoryName))
+                            categoryList.add(customCategory: CustomCategory(name: newCategoryName))
                             categoryId = categoryList.getCategoryIdString(name: newCategoryName)
                             newCategoryName = ""
                         }, label: {Text("추가")})
@@ -273,7 +273,7 @@ struct SubscriptionEdit: View {
                                     showWrongPaymentInputAlert = true
                                     return
                                 }
-                                paymentList.payments.append(Payment(name: newPaymentName, pay: paymentPay!))
+                                paymentList.add(payment: Payment(name: newPaymentName, pay: paymentPay!))
                                 paymentId = paymentList.getPaymentIdString(name: newPaymentName, pay: paymentPay!)
                                 newPaymentName = ""
                             }, label: {Text("추가")})

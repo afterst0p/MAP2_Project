@@ -18,6 +18,8 @@
 		9F42EE552BFF03350072A6E9 /* SubscriptionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F42EE542BFF03350072A6E9 /* SubscriptionDetail.swift */; };
 		9F42EE5B2BFF6B3E0072A6E9 /* CustomCategoryData.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F42EE5A2BFF6B3E0072A6E9 /* CustomCategoryData.json */; };
 		9F42EE5D2BFF6B7C0072A6E9 /* PaymentData.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F42EE5C2BFF6B7C0072A6E9 /* PaymentData.json */; };
+		9F5E4A912C1C1E46002E3BD2 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5E4A902C1C1E46002E3BD2 /* PersistenceController.swift */; };
+		9F5E4A972C1C2D28002E3BD2 /* SubscriptionDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F5E4A952C1C2D28002E3BD2 /* SubscriptionDataModel.xcdatamodeld */; };
 		9F6D97052BFFA087004CFE30 /* SubscriptionAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6D97042BFFA087004CFE30 /* SubscriptionAdd.swift */; };
 		9FB9A7F92BFE171D00DAACBB /* Subscription_Fee_ManagementApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB9A7F82BFE171D00DAACBB /* Subscription_Fee_ManagementApp.swift */; };
 		9FB9A7FB2BFE171D00DAACBB /* SubscriptionPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB9A7FA2BFE171D00DAACBB /* SubscriptionPage.swift */; };
@@ -42,6 +44,8 @@
 		9F42EE542BFF03350072A6E9 /* SubscriptionDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionDetail.swift; sourceTree = "<group>"; };
 		9F42EE5A2BFF6B3E0072A6E9 /* CustomCategoryData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CustomCategoryData.json; sourceTree = "<group>"; };
 		9F42EE5C2BFF6B7C0072A6E9 /* PaymentData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PaymentData.json; sourceTree = "<group>"; };
+		9F5E4A902C1C1E46002E3BD2 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		9F5E4A962C1C2D28002E3BD2 /* SubscriptionDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SubscriptionDataModel.xcdatamodel; sourceTree = "<group>"; };
 		9F6D97042BFFA087004CFE30 /* SubscriptionAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionAdd.swift; sourceTree = "<group>"; };
 		9FB9A7F52BFE171D00DAACBB /* Subscription Fee Management.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Subscription Fee Management.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FB9A7F82BFE171D00DAACBB /* Subscription_Fee_ManagementApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscription_Fee_ManagementApp.swift; sourceTree = "<group>"; };
@@ -149,6 +153,7 @@
 				9FB9A8192BFE552B00DAACBB /* SubscriptionData.json */,
 				9F42EE5A2BFF6B3E0072A6E9 /* CustomCategoryData.json */,
 				9F42EE5C2BFF6B7C0072A6E9 /* PaymentData.json */,
+				9F5E4A952C1C2D28002E3BD2 /* SubscriptionDataModel.xcdatamodeld */,
 				9FB9A7FC2BFE171F00DAACBB /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -186,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				9FB9A81B2BFE577800DAACBB /* Extension */,
+				9F5E4A902C1C1E46002E3BD2 /* PersistenceController.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -279,12 +285,14 @@
 				9FB9A7F92BFE171D00DAACBB /* Subscription_Fee_ManagementApp.swift in Sources */,
 				9F4186472C16ACE100C4E643 /* SettingsPage.swift in Sources */,
 				9F42EE552BFF03350072A6E9 /* SubscriptionDetail.swift in Sources */,
+				9F5E4A912C1C1E46002E3BD2 /* PersistenceController.swift in Sources */,
 				9F3D766E2C12B1CF003A5FF8 /* PaymentList.swift in Sources */,
 				9F4186492C16C04B00C4E643 /* CategoriesEdit.swift in Sources */,
 				9F4186422C16826300C4E643 /* MainTabView.swift in Sources */,
 				9FB9A81D2BFE579800DAACBB /* BundleExtension.swift in Sources */,
 				9FB9A80E2BFE3D6A00DAACBB /* CustomCategory.swift in Sources */,
 				9F6D97052BFFA087004CFE30 /* SubscriptionAdd.swift in Sources */,
+				9F5E4A972C1C2D28002E3BD2 /* SubscriptionDataModel.xcdatamodeld in Sources */,
 				9F3D766A2C12B19F003A5FF8 /* SubscriptionList.swift in Sources */,
 				9FB9A8102BFE3DB400DAACBB /* Payment.swift in Sources */,
 			);
@@ -496,6 +504,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9F5E4A952C1C2D28002E3BD2 /* SubscriptionDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9F5E4A962C1C2D28002E3BD2 /* SubscriptionDataModel.xcdatamodel */,
+			);
+			currentVersion = 9F5E4A962C1C2D28002E3BD2 /* SubscriptionDataModel.xcdatamodel */;
+			name = SubscriptionDataModel.xcdatamodeld;
+			path = "/Users/st0p/Developer/MobileAppPrograming2/MAP2_Project/Subscription Fee Management/Subscription Fee Management/Resources/SubscriptionDataModel.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9FB9A7ED2BFE171D00DAACBB /* Project object */;
 }

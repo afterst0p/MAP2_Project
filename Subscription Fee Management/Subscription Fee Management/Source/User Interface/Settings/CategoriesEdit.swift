@@ -72,8 +72,12 @@ struct CategoriesEdit: View {
                         )
                     }
                 }
-                .onDelete(perform: deleteItems)
-                .onMove(perform: moveItems)
+                .onDelete{ indexSet in
+                    categoryList.delete(at: indexSet)
+                }
+                .onMove { source, destination in
+                    categoryList.move(from: source, to: destination)
+                }
             }
             .environment(\.editMode, .constant(self.isEditing ? EditMode.active : EditMode.inactive)).animation(Animation.spring())
             .navigationBarTitle("카테고리 관리")
@@ -91,14 +95,6 @@ struct CategoriesEdit: View {
             })
             .contentMargins(.top, 20)
         }
-    }
-    
-    func deleteItems(at offsets: IndexSet) {
-        categoryList.customCategories.remove(atOffsets: offsets)
-    }
-    
-    func moveItems(from source: IndexSet, to destination: Int) {
-        categoryList.customCategories.move(fromOffsets: source, toOffset: destination)
     }
 }
 

@@ -83,8 +83,12 @@ struct PaymentsEdit: View {
                         }
                     }
                 }
-                .onDelete(perform: deleteItems)
-                .onMove(perform: moveItems)
+                .onDelete{ indexSet in
+                    paymentList.delete(at: indexSet)
+                }
+                .onMove { source, destination in
+                    paymentList.move(from: source, to: destination)
+                }
             }
             .environment(\.editMode, .constant(self.isEditing ? EditMode.active : EditMode.inactive)).animation(Animation.spring())
             .navigationBarTitle("결제 수단 관리")
@@ -102,14 +106,6 @@ struct PaymentsEdit: View {
             })
             .contentMargins(.top, 20)
         }
-    }
-    
-    func deleteItems(at offsets: IndexSet) {
-        paymentList.payments.remove(atOffsets: offsets)
-    }
-    
-    func moveItems(from source: IndexSet, to destination: Int) {
-        paymentList.payments.move(fromOffsets: source, toOffset: destination)
     }
 }
 
