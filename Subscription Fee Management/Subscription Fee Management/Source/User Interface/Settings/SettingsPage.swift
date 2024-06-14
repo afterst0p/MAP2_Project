@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct SettingsPage: View {
     @ObservedObject var categoryList: CustomCategoryList
@@ -19,11 +20,15 @@ struct SettingsPage: View {
     var body: some View {
         NavigationView {
             List {
-                Section {
-                    Toggle(isOn: $iCloudService) {
-                        Text("iCloud 동기화")
-                    }
-                }
+                // Apple Developer Program 가입 필요
+//                Section {
+//                    Toggle(isOn: $iCloudService) {
+//                        Text("iCloud 동기화")
+//                    }
+//                    .onChange(of: iCloudService) { value in
+//                        handleiCloudSync(value)
+//                    }
+//                }
                 Section {
                     Toggle(isOn: $alertService) {
                         Text("구독 결제일 알림")
@@ -60,6 +65,24 @@ struct SettingsPage: View {
             .contentMargins(.top, 20)
         }
     }
+
+    // Apple Developer Program 가입 필요
+//    private func handleiCloudSync(_ isEnabled: Bool) {
+//        let container = PersistenceController.shared.container
+//        let description = container.persistentStoreDescriptions.first
+//        
+//        if isEnabled {
+//            description?.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.com.yourdomain.SubscriptionDataModel")
+//        } else {
+//            description?.cloudKitContainerOptions = nil
+//        }
+//        
+//        container.loadPersistentStores { storeDescription, error in
+//            if let error = error as NSError? {
+//                print("Container load failed: \(error)")
+//            }
+//        }
+//    }
 }
 
 #Preview {
