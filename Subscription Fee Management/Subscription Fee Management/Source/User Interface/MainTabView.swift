@@ -42,7 +42,7 @@ struct MainTabView: View {
     }
     
     var settings: some View {
-        SettingsPage(categoryList: categoryList, paymentList: paymentList)
+        SettingsPage(subscriptionList: subscriptionList, categoryList: categoryList, paymentList: paymentList)
             .tag(Tabs.settings)
             .tabItem(image: "gear", text: "설정")
     }

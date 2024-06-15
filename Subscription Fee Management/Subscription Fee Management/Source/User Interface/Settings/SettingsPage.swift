@@ -9,13 +9,22 @@ import SwiftUI
 import CoreData
 
 struct SettingsPage: View {
+    @ObservedObject var subscriptionList: SubscriptionList
     @ObservedObject var categoryList: CustomCategoryList
     @ObservedObject var paymentList: PaymentList
-    @State private var iCloudService = false
-    @State private var alertService = false
+    
+//    @State private var iCloudService = false
+    @State private var alertService: Bool
     
     @State private var isCategoriesEditing = false
     @State private var isPaymentsEditing = false
+    
+    init(subscriptionList: SubscriptionList, categoryList: CustomCategoryList, paymentList: PaymentList) {
+        self.subscriptionList = subscriptionList
+        self.categoryList = categoryList
+        self.paymentList = paymentList
+        _alertService = State(initialValue: UserDefaults.standard.bool(forKey: "alertService"))
+    }
     
     var body: some View {
         NavigationView {
@@ -32,6 +41,9 @@ struct SettingsPage: View {
                 Section {
                     Toggle(isOn: $alertService) {
                         Text("구독 결제일 알림")
+                    }
+                    .onChange(of: alertService) {
+                        subscriptionList.usePayDateAlert(enabled: alertService)
                     }
                 }
                 Section {
@@ -86,5 +98,5 @@ struct SettingsPage: View {
 }
 
 #Preview {
-    SettingsPage(categoryList: CustomCategoryList(), paymentList: PaymentList())
+    SettingsPage(subscriptionList: SubscriptionList(), categoryList: CustomCategoryList(), paymentList: PaymentList())
 }
