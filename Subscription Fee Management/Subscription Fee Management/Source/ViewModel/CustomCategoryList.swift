@@ -29,6 +29,7 @@ class CustomCategoryList: ObservableObject {
         orderedCustomCategory.order = customCategories.count + 1
         
         let cdCustomCategory = customCategory.toCDCustomCategory(context: viewContext)
+        print(cdCustomCategory)
         saveContext()
     }
     
@@ -49,8 +50,6 @@ class CustomCategoryList: ObservableObject {
     }
     
     func delete(at offsets: IndexSet) {
-        customCategories.remove(atOffsets: offsets)
-        
         offsets.forEach { index in
             let customCategory = customCategories[index]
             let request: NSFetchRequest<CDCustomCategory> = CDCustomCategory.fetchRequest()
@@ -60,12 +59,35 @@ class CustomCategoryList: ObservableObject {
                 let cdCustomCategories = try viewContext.fetch(request)
                 if let cdCustomCategory = cdCustomCategories.first {
                     viewContext.delete(cdCustomCategory)
+                    
                     saveContext()
                 }
             } catch {
                 print("Core Data에 CustomCategory 삭제 실패: \(error)")
             }
         }
+        
+        customCategories.remove(atOffsets: offsets)
+        
+        for i in 0..<customCategories.count {
+            customCategories[i].order = i
+        }
+        
+        for customCategory in customCategories {
+            let request: NSFetchRequest<CDCustomCategory> = CDCustomCategory.fetchRequest()
+            request.predicate = NSPredicate(format: "id == %@", customCategory.id as CVarArg)
+            
+            do {
+                let cdCustomCategories = try viewContext.fetch(request)
+                if let cdCustomCategory = cdCustomCategories.first {
+                    cdCustomCategory.order = Int32(customCategory.order)
+                }
+            } catch {
+                print("Core Data에 CustomCategory 수정 실패: \(error)")
+            }
+        }
+        
+        saveContext()
     }
     
     func move(from source: IndexSet, to destination: Int) {

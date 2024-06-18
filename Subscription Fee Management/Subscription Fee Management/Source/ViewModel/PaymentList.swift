@@ -50,8 +50,6 @@ class PaymentList: ObservableObject {
     }
     
     func delete(at offsets: IndexSet) {
-        payments.remove(atOffsets: offsets)
-        
         offsets.forEach { index in
             let payment = payments[index]
             let request: NSFetchRequest<CDPayment> = CDPayment.fetchRequest()
@@ -67,6 +65,28 @@ class PaymentList: ObservableObject {
                 print("Core Data에 Payment 삭제 실패: \(error)")
             }
         }
+        
+        payments.remove(atOffsets: offsets)
+        
+        for i in 0..<payments.count {
+            payments[i].order = i
+        }
+        
+        for payment in payments {
+            let request: NSFetchRequest<CDPayment> = CDPayment.fetchRequest()
+            request.predicate = NSPredicate(format: "id == %@", payment.id as CVarArg)
+            
+            do {
+                let cdPayments = try viewContext.fetch(request)
+                if let cdPayment = cdPayments.first {
+                    cdPayment.order = Int32(payment.order)
+                }
+            } catch {
+                print("Core Data에 Payment 수정 실패: \(error)")
+            }
+        }
+        
+        saveContext()
     }
     
     func move(from source: IndexSet, to destination: Int) {
