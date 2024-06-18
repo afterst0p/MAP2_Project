@@ -30,7 +30,7 @@ struct MainTabView: View {
     }
     
     var expenditure: some View {
-        Text("지출 확인")
+        ExpenditurePage(subscriptionList: subscriptionList, categoryList: categoryList, paymentList: paymentList)
             .tag(Tabs.expenditure)
             .tabItem(image: "scroll", text: "지출 확인")
     }

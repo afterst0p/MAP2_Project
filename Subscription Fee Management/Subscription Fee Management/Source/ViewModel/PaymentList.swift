@@ -25,19 +25,6 @@ class PaymentList: ObservableObject {
         fetch()
     }
     
-    func fetch() {
-        let request: NSFetchRequest<CDPayment> = CDPayment.fetchRequest()
-        let sortDescriptor = NSSortDescriptor(key: "order", ascending: true)
-        request.sortDescriptors = [sortDescriptor]
-        
-        do {
-            let cdPayments = try viewContext.fetch(request)
-            payments = cdPayments.map { Payment(cdPayment: $0) }
-        } catch {
-            print("Core Data에서 Payment 불러오기 실패")
-        }
-    }
-    
     func add(payment: Payment) {
         var orderedPayment = payment
         orderedPayment.order = payments.count + 1
@@ -106,15 +93,6 @@ class PaymentList: ObservableObject {
         saveContext()
     }
     
-    func saveContext() {
-        do {
-            try viewContext.save()
-            fetch()
-        } catch {
-            print("Core Data에 Payment 저장 실패")
-        }
-    }
-    
     func getPaymentByUUID(uuidString: String?) -> Payment? {
         guard let uuidStringUnwrapped = uuidString else {
                     return nil
@@ -136,5 +114,29 @@ class PaymentList: ObservableObject {
     
     func isDuplicate(name: String, pay: Payment.method, uuidString: String) -> Bool {
         payments.contains { $0.name == name && $0.pay == pay && $0.id.uuidString != uuidString }
+    }
+}
+
+extension PaymentList {
+    func fetch() {
+        let request: NSFetchRequest<CDPayment> = CDPayment.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "order", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
+        
+        do {
+            let cdPayments = try viewContext.fetch(request)
+            payments = cdPayments.map { Payment(cdPayment: $0) }
+        } catch {
+            print("Core Data에서 Payment 불러오기 실패")
+        }
+    }
+    
+    func saveContext() {
+        do {
+            try viewContext.save()
+            fetch()
+        } catch {
+            print("Core Data에 Payment 저장 실패")
+        }
     }
 }

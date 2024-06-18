@@ -29,6 +29,8 @@
 		9FB9A80E2BFE3D6A00DAACBB /* CustomCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB9A80D2BFE3D6A00DAACBB /* CustomCategory.swift */; };
 		9FB9A8102BFE3DB400DAACBB /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB9A80F2BFE3DB400DAACBB /* Payment.swift */; };
 		9FB9A81D2BFE579800DAACBB /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB9A81C2BFE579800DAACBB /* BundleExtension.swift */; };
+		9FDE9FD42C1EAD1C008AA5C6 /* ExpenditurePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDE9FD32C1EAD1C008AA5C6 /* ExpenditurePage.swift */; };
+		9FDE9FD82C20E25C008AA5C6 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDE9FD72C20E25C008AA5C6 /* DateExtension.swift */; };
 		9FE4AD542BFE6890004109C5 /* SubscriptionData.json in Resources */ = {isa = PBXBuildFile; fileRef = 9FB9A8192BFE552B00DAACBB /* SubscriptionData.json */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +59,8 @@
 		9FB9A80F2BFE3DB400DAACBB /* Payment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payment.swift; sourceTree = "<group>"; };
 		9FB9A8192BFE552B00DAACBB /* SubscriptionData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = SubscriptionData.json; path = "Subscription Fee Management/Resources/SubscriptionData.json"; sourceTree = SOURCE_ROOT; };
 		9FB9A81C2BFE579800DAACBB /* BundleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
+		9FDE9FD32C1EAD1C008AA5C6 /* ExpenditurePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenditurePage.swift; sourceTree = "<group>"; };
+		9FDE9FD72C20E25C008AA5C6 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				9F4186412C16826300C4E643 /* MainTabView.swift */,
+				9FDE9FD22C1EAD07008AA5C6 /* Expenditure */,
 				9F4186402C16824800C4E643 /* Subscription */,
 				9F4186452C16ACC300C4E643 /* Settings */,
 			);
@@ -200,8 +205,17 @@
 			isa = PBXGroup;
 			children = (
 				9FB9A81C2BFE579800DAACBB /* BundleExtension.swift */,
+				9FDE9FD72C20E25C008AA5C6 /* DateExtension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		9FDE9FD22C1EAD07008AA5C6 /* Expenditure */ = {
+			isa = PBXGroup;
+			children = (
+				9FDE9FD32C1EAD1C008AA5C6 /* ExpenditurePage.swift */,
+			);
+			path = Expenditure;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F3590B02C104C6B0079DFEA /* SubscriptionEdit.swift in Sources */,
+				9FDE9FD82C20E25C008AA5C6 /* DateExtension.swift in Sources */,
 				9FB9A80C2BFE3B0300DAACBB /* Subscription.swift in Sources */,
 				9F3D766C2C12B1BD003A5FF8 /* CustomCategoryList.swift in Sources */,
 				9FB9A7FB2BFE171D00DAACBB /* SubscriptionPage.swift in Sources */,
@@ -288,6 +303,7 @@
 				9F5E4A912C1C1E46002E3BD2 /* PersistenceController.swift in Sources */,
 				9F3D766E2C12B1CF003A5FF8 /* PaymentList.swift in Sources */,
 				9F4186492C16C04B00C4E643 /* CategoriesEdit.swift in Sources */,
+				9FDE9FD42C1EAD1C008AA5C6 /* ExpenditurePage.swift in Sources */,
 				9F4186422C16826300C4E643 /* MainTabView.swift in Sources */,
 				9FB9A81D2BFE579800DAACBB /* BundleExtension.swift in Sources */,
 				9FB9A80E2BFE3D6A00DAACBB /* CustomCategory.swift in Sources */,

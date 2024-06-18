@@ -25,16 +25,6 @@ class SubscriptionList: ObservableObject {
         fetch()
     }
     
-    func fetch() {
-        let request: NSFetchRequest<CDSubscription> = CDSubscription.fetchRequest()
-        do {
-            let cdSubscriptions = try viewContext.fetch(request)
-            subscriptions = cdSubscriptions.map { Subscription(cdSubscription: $0) }
-        } catch {
-            print("Core Data에서 Subscription 불러오기 실패")
-        }
-    }
-    
     func add(subscription: Subscription) {
         let cdSubscription = subscription.toCDSubscription(context: viewContext)
         saveContext()
@@ -107,6 +97,18 @@ class SubscriptionList: ObservableObject {
             print("Core Data에 Subscription 삭제 실패: \(error)")
         }
     }
+}
+
+extension SubscriptionList {
+    func fetch() {
+        let request: NSFetchRequest<CDSubscription> = CDSubscription.fetchRequest()
+        do {
+            let cdSubscriptions = try viewContext.fetch(request)
+            subscriptions = cdSubscriptions.map { Subscription(cdSubscription: $0) }
+        } catch {
+            print("Core Data에서 Subscription 불러오기 실패")
+        }
+    }
     
     func saveContext() {
         do {
@@ -117,6 +119,16 @@ class SubscriptionList: ObservableObject {
         }
     }
     
+    func isDuplicate(name: String) -> Bool {
+        subscriptions.contains { $0.name == name }
+    }
+    
+    func isDuplicate(name: String, uuidString: String) -> Bool {
+        subscriptions.contains { $0.name == name && $0.id.uuidString != uuidString }
+    }
+}
+
+extension SubscriptionList {
     func usePayDateAlert(enabled: Bool) {
         if enabled {
             enablePayDateAlert()
@@ -195,12 +207,85 @@ class SubscriptionList: ObservableObject {
         // UserDefault에 알림 활성화 여부 저장
         UserDefaults.standard.set(false, forKey: "alertService")
     }
-    
-    func isDuplicate(name: String) -> Bool {
-        subscriptions.contains { $0.name == name }
+}
+
+extension SubscriptionList {
+    func getMonthlyTotal() -> Int {
+        // 이번 달 구독료 합계
+        var monthlyTotal: Int = 0
+        
+        // 이번 달 불러오기
+        let currentMonth = Calendar.current.component(.month, from: Date())
+        
+        // 월간 구독료 모으기, 연간 구독일 경우 해당 월일 경우에만 수집
+        for subscription in subscriptions {
+            if (subscription.yearly) {
+                if (subscription.payDate.month == currentMonth) {
+                    monthlyTotal += subscription.price
+                }
+            } else {
+                monthlyTotal += subscription.price
+            }
+        }
+        return monthlyTotal
     }
     
-    func isDuplicate(name: String, uuidString: String) -> Bool {
-        subscriptions.contains { $0.name == name && $0.id.uuidString != uuidString }
+    func getDailyExpenses() -> [Int: Int] {
+        // 일:구독료 딕셔너리
+        var dailyExpenses: [Int: Int] = [:]
+        
+        // 이번 달 불러오기
+        let currentMonth = Calendar.current.component(.month, from: Date())
+        
+        // 이번 달 말일 불러오기
+        let endDayOfMonth = Calendar.current.component(.day, from: Date().endDateOfMonth)
+        
+        // 월간 구독료 모으기, 연간 구독일 경우 해당 월일 경우에만 수집
+        for subscription in subscriptions {
+            if (subscription.yearly) {
+                if (subscription.payDate.month == currentMonth) {
+                    dailyExpenses[subscription.payDate.day!, default: 0] += subscription.price
+                }
+            } else {
+                if (subscription.payDate.day! > endDayOfMonth) {
+                    dailyExpenses[endDayOfMonth, default: 0] += subscription.price
+                } else {
+                    dailyExpenses[subscription.payDate.day!, default: 0] += subscription.price
+                }
+            }
+        }
+        return dailyExpenses
+    }
+    
+    func getYearlyTotal() -> Int {
+        // 이번 달 구독료 합계
+        var yearlyTotal: Int = 0
+        
+        // 월간 구독료 모으기, 월간 구독일 경우 매월 구독료 포함
+        for subscription in subscriptions {
+            if (subscription.yearly) {
+                yearlyTotal += subscription.price
+            } else {
+                yearlyTotal += subscription.price * 12
+            }
+        }
+        return yearlyTotal
+    }
+    
+    func getMonthlyExpenses() -> [Int: Int] {
+        // 월:구독료 딕셔너리
+        var monthlyExpenses: [Int: Int] = [:]
+        
+        // 연간 구독료 모으기, 월간 구독일 경우 매월 구독료 포함
+        for subscription in subscriptions {
+            if (subscription.yearly) {
+                monthlyExpenses[subscription.payDate.month!, default: 0] += subscription.price
+            } else {
+                for month in 1...12 {
+                    monthlyExpenses[month, default: 0] += subscription.price
+                }
+            }
+        }
+        return monthlyExpenses
     }
 }

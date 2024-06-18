@@ -24,19 +24,6 @@ class CustomCategoryList: ObservableObject {
         fetch()
     }
     
-    func fetch() {
-        let request: NSFetchRequest<CDCustomCategory> = CDCustomCategory.fetchRequest()
-        let sortDescriptor = NSSortDescriptor(key: "order", ascending: true)
-        request.sortDescriptors = [sortDescriptor]
-        
-        do {
-            let cdCustomCategories = try viewContext.fetch(request)
-            customCategories = cdCustomCategories.map { CustomCategory(cdCustomCategory: $0) }
-        } catch {
-            print("Core Data에서 CustomCategory 불러오기 실패")
-        }
-    }
-    
     func add(customCategory: CustomCategory) {
         var orderedCustomCategory = customCategory
         orderedCustomCategory.order = customCategories.count + 1
@@ -105,15 +92,6 @@ class CustomCategoryList: ObservableObject {
         saveContext()
     }
     
-    func saveContext() {
-        do {
-            try viewContext.save()
-            fetch()
-        } catch {
-            print("Core Data에 CustomCategory 저장 실패")
-        }
-    }
-    
     func getCategoryByUUID(uuidString: String?) -> CustomCategory? {
         guard let uuidStringUnwrapped = uuidString else {
                     return nil
@@ -135,5 +113,29 @@ class CustomCategoryList: ObservableObject {
     
     func isDuplicate(name: String, uuidString: String) -> Bool {
         customCategories.contains { $0.name == name && $0.id.uuidString != uuidString }
+    }
+}
+
+extension CustomCategoryList {
+    func fetch() {
+        let request: NSFetchRequest<CDCustomCategory> = CDCustomCategory.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "order", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
+        
+        do {
+            let cdCustomCategories = try viewContext.fetch(request)
+            customCategories = cdCustomCategories.map { CustomCategory(cdCustomCategory: $0) }
+        } catch {
+            print("Core Data에서 CustomCategory 불러오기 실패")
+        }
+    }
+    
+    func saveContext() {
+        do {
+            try viewContext.save()
+            fetch()
+        } catch {
+            print("Core Data에 CustomCategory 저장 실패")
+        }
     }
 }
